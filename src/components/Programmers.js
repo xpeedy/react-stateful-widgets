@@ -30,11 +30,10 @@ export default function Programmers() {
   const [programmers] = useState(listOfAwesome)
   const [idprogrammers, setIdprogrammers] = useState(null)
 
-  const getNameOfFeatured = () => programmers.forEach((dev) => {
-    if (dev.id === idprogrammers){
-      return dev.name;
-    }
-  })
+  // programmers = idprogrammers ? setIdprogrammers(idprogrammers) : setIdprogrammers(null)
+  const getNameOfFeatured = (id) => {
+    return programmers[id-1].name;
+  }
     // Leave this for last!
     // This is NOT an event handler but a helper function. See its usage inside the JSX.
     // It's going to utilize both slices of state to return the _name_ of the featured dev.
@@ -69,8 +68,8 @@ export default function Programmers() {
           // Ternaries are fantastic to render "one thing or the other" depending on the "truthiness" of something.
           // Pseudo-code: if the currently featured id is truthy render text 1, otherwise render text 2.
           // Replace the hard-coded false with the correct variable.
-          programmers
-            ? `🎉 Let's celebrate ${getNameOfFeatured()}! 🥳`
+          idprogrammers
+            ? `🎉 Let's celebrate ${getNameOfFeatured(idprogrammers)}! 🥳`
             : 'Pick an awesome programmer'
         }
       </div>
